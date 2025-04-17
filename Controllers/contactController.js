@@ -1,6 +1,13 @@
 const asyncHandler = require("express-async-handler")
 const Contact = require("../models/contactModel")
 
+//@desc Get all contacts
+//@route GET /api/contacts
+//access public 
+const getContacts = asyncHandler(async (req, res) => {
+    const contacts = await Contact.find();
+    res.status(200).json(contacts);
+});
 
 //@desc Create new contacts
 //@route POST /api/contacts
@@ -58,7 +65,7 @@ const deleteContact = asyncHandler(async (req, res) => {
         throw new Error("Contact not found");
     }
     await Contact.deleteOne();
-    //await Contact.remove() in which doesn't work since this method is used to removes everything instead of the document you found.
+    //await Contact.remove() in  which doesn't work since this method is used to removes everything instead of the document you found.
     res.status(200).json(contact);
 });
 module.exports = { getContacts, getContact, createContact, updateContact, deleteContact }

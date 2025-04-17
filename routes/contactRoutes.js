@@ -13,6 +13,7 @@ const { getContact, createContact, getContacts, updateContact, deleteContact } =
 // router.route("/:id").delete(deleteContact); 
 
 //efficent way
+
 router.route("/").get(getContacts).post(createContact);
 router.route("/:id").get(getContact).put(updateContact).delete(deleteContact);
 
